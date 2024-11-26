@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Stylist</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Stylist</h1>
+        <form id="uploadForm">
+            <label for="photoUpload">Upload Your Photo:</label>
+            <input type="file" id="photoUpload" name="photo" accept="image/*" required>
+            <button type="button" id="analyzeButton">Analyze</button>
+        </form>
+
+        <div id="popup" class="hidden">
+            <p>Our AI model is in development. For more precise results, please enter:</p>
+            <div id="extraInputs" class="hidden">
+                <label for="waist">Waist Size (in cm):</label>
+                <input type="number" id="waist" name="waist">
+
+                <label for="hip">Hip Size (in cm):</label>
+                <input type="number" id="hip" name="hip">
+
+                <label for="bust">Bust Size (in cm):</label>
+                <input type="number" id="bust" name="bust">
+            </div>
+
+            <div id="maleInputs" class="hidden">
+                <label for="chest">Chest Size (in cm):</label>
+                <input type="number" id="chest" name="chest">
+            </div>
+            <button type="button" id="continueAnalyze">Continue</button>
+        </div>
+        <div id="results" class="hidden">
+            <h2>Results</h2>
+            <img id="uploadedPhoto" alt="Uploaded Photo">
+            <div id="output">
+                <div>Gender: <span id="gender"></span></div>
+                <div>Skin Tone: <span id="skinTone"></span> <div id="colorBox"></div></div>
+                <div>Body Shape: <span id="bodyShape"></span></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
