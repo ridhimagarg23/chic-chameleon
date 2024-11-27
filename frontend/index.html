@@ -3,47 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Stylist</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Fashion Outfit Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>AI Stylist</h1>
-        <form id="uploadForm">
-            <label for="photoUpload">Upload Your Photo:</label>
-            <input type="file" id="photoUpload" name="photo" accept="image/*" required>
-            <button type="button" id="analyzeButton">Analyze</button>
+        <h1>Upload Your Photo</h1>
+
+        <!-- Image Upload Section -->
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" id="imageUpload" accept="image/*" required>
+            <button type="submit">Upload Image</button>
         </form>
 
-        <div id="popup" class="hidden">
-            <p>Our AI model is in development. For more precise results, please enter:</p>
-            <div id="extraInputs" class="hidden">
-                <label for="waist">Waist Size (in cm):</label>
-                <input type="number" id="waist" name="waist">
-
-                <label for="hip">Hip Size (in cm):</label>
-                <input type="number" id="hip" name="hip">
-
-                <label for="bust">Bust Size (in cm):</label>
-                <input type="number" id="bust" name="bust">
-            </div>
-
-            <div id="maleInputs" class="hidden">
-                <label for="chest">Chest Size (in cm):</label>
-                <input type="number" id="chest" name="chest">
-            </div>
-            <button type="button" id="continueAnalyze">Continue</button>
+        <div id="imagePreview" class="image-preview">
+            <h3>Your Image Preview</h3>
+            <img id="uploadedImage" src="" alt="Uploaded Image">
         </div>
-        <div id="results" class="hidden">
-            <h2>Results</h2>
-            <img id="uploadedPhoto" alt="Uploaded Photo">
-            <div id="output">
-                <div>Gender: <span id="gender"></span></div>
-                <div>Skin Tone: <span id="skinTone"></span> <div id="colorBox"></div></div>
-                <div>Body Shape: <span id="bodyShape"></span></div>
-            </div>
+
+        <!-- Gender and Skin Color Display -->
+        <div id="genderAndColor" class="details-box">
+            <p>Gender: <span id="gender"></span></p>
+            <p>Skin Color: <span id="skinColor"></span></p>
+        </div>
+
+        <!-- Body Measurements Form -->
+        <div id="bodyShapeForm" class="body-shape-form">
+            <h2>Enter Your Body Measurements</h2>
+            <form method="POST">
+                <label for="waist">Waist (in inches):</label>
+                <input type="number" id="waist" name="waist" required>
+                <label for="hip">Hip (in inches):</label>
+                <input type="number" id="hip" name="hip" required>
+                <label for="bust">Bust (in inches):</label>
+                <input type="number" id="bust" name="bust">
+                <button type="submit">Submit Measurements</button>
+            </form>
+        </div>
+
+        <!-- Outfit Suggestions Table -->
+        <div id="outfitSuggestions" class="outfit-suggestions">
+            <h2>Recommended Outfits</h2>
+            <table id="outfitTable">
+                <thead>
+                    <tr>
+                        <th>Outfit Title</th>
+                        <th>Description</th>
+                        <th>Color Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic outfit rows will go here -->
+                </tbody>
+            </table>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Image Preview Script
+        document.getElementById('imageUpload').addEventListener('change', function(event){
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('uploadedImage').src = e.target.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        });
+
+        // Function to fetch gender and skin color from backend
+        function fetchGenderAndColor() {
+            fetch('/detect_gender_skin_color', {
+                method: 'POST',
+                body: JSON.stringify({image: document.getElementById('imageUpload').files[0]}),
+                headers: { 'Content-Type': 'application/json' },
+            }).then(response => response.json())
+              .then(data => {
+                  document.getElementById('gender').textContent = data.gender;
+                  document.getElementById('skinColor').textContent = data.skin_color;
+              });
+        }
+
+        // Call the function to fetch gender and color
+        fetchGenderAndColor();
+    </script>
 </body>
 </html>

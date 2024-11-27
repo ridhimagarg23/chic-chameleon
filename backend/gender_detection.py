@@ -70,7 +70,7 @@ from keras.models import load_model
 # Function to detect gender in an image
 def gender_detector(img_path):
     # Load your pre-trained gender classification model
-    model = load_model('./backend/models/model.h5')  # Ensure 'model.h5' exists in your working directory
+    model = load_model('../backend/models/model.h5')  # Ensure 'model.h5' exists in your working directory
 
     # Load the face detection classifier from OpenCV (Haar Cascade)
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')

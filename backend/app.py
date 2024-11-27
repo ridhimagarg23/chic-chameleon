@@ -5,11 +5,13 @@ from backend.skin_color_detection2 import get_skin_color
 from bg_remover import remove_background
 from gender_detection import gender_detector
 from bodyshape_detector import predict_body_shape
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './assets'
 
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
+
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
@@ -34,8 +36,9 @@ def analyze():
     image = remove_background(image)
     skin_tone = get_skin_color(image)
     gender = gender_detector(image)
-    body_shape = predict_body_shape(image,gender,waist,hip,bust)
+    body_shape = predict_body_shape(image, gender, waist, hip, bust)
     return jsonify({"gender": gender})
+
 
 @app.route('/final_analyze', methods=['GET'])
 def final_analyze():
@@ -49,6 +52,7 @@ def final_analyze():
     }
     return jsonify(results)
 
+
 if __name__ == '__main__':
     app.run(debug=True)
 
@@ -61,17 +65,17 @@ if __name__ == '__main__':
 #     Based on the following user details:
 #     - Gender: female
 #     - Body Type: pear
-#     - Skin Tone: fair 
+#     - Skin Tone: fair
 #      Skin Color -  #d5ab81
 #      Event Type - Formal
-    
-    
+
+
 #     Please provide:
 #     1. A list or dictionary of **colors that suit** the user's skin tone along with their corresponding color codes (e.g., '#FF5733').
 #     2. A list or dictionary of **dress types** that are recommended based on the EVENT TYPE AND  user's body type ANSWER BASED ON EVENT TYPE ONLY.
 #     3. A list of **at least 10 do's** related to the body type and skin tone.
 #     4. A list of **at least 10 don'ts** related to the body type and skin tone.
-    
+
 #     Respond in a structured format as JSON:
 #     {{
 #         "colors_suited": [{{"color": "color_name", "code": "color_code"}}],

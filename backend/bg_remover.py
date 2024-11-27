@@ -37,9 +37,9 @@ def remove_background(input_image_path, output_image_path):
         print(f"Error: The file {input_image_path} does not exist.")
 
 
-def find_image_in_frontend(extensions=['.png', '.jpg', '.jpeg']):
+def find_image_in_frontend(extensions=['.png', '.jpg', 'image.jpeg']):
     # Define the folder path where images are stored
-    folder_path = './frontend/assets/'
+    folder_path = '../frontend/assets'
     
     # Loop through all files in the directory
     for file_name in os.listdir(folder_path):
@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     if input_path:        
         # Define output image path in the backend/static folder
-        output_path = './backend/static/image.png'  # Processed image will be saved here
+        output_path = './static/image.png'  # Processed image will be saved here
 
         # Check if output file exists, and remove it if necessary
         if os.path.exists(output_path):

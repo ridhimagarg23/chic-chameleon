@@ -3,7 +3,7 @@ import numpy as np
 from collections import Counter
 
 # Load the image
-image = cv2.imread('./backend/static/image.png')
+image = cv2.imread('./static/image.png')
 
 # Load the pre-trained Haar Cascade Classifier for face detection
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
