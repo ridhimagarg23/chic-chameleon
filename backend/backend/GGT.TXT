@@ -1,0 +1,108 @@
+### AI Stylist Prompt for Outfit Recommendations and Image Generation
+
+**Prompt Structure:**
+
+1. **Input Details:** Provide the following inputs for every use case:
+   - **Image of the user**
+   - Detected attributes:
+     - Gender: Male/Female/Non-binary
+     - Body Shape: Slim/Athletic/Average/Curvy/Plus-size
+     - Skin Tone: Fair/Wheatish/Olive/Dusky/Dark (Exact Hex Code if possible)
+
+2. **Event Types:** Define the type of event:
+   - Daily Wear: Comfortable and practical outfits for everyday use.
+   - Formal: Office meetings, presentations, or business dinners.
+   - Informal: Outings, casual gatherings, or weekend trips.
+   - College Wear: Daily outfits for regular college days, emphasizing comfort and style.
+   - College Style: Trendy looks for college fests, cultural events, or stylish group activities.
+   - Festive Wear: Traditional or semi-formal outfits for celebrations like Diwali, Eid, or Christmas.
+   - Party Look: Glamorous attire for night-outs, weddings, or clubbing.
+   - Special Occasions: Birthdays, anniversaries, or personal milestone events.
+     - Marriage: Traditional, ethnic, or fusion styles for weddings and related ceremonies.
+
+3. **Output Requirements:**
+   - Recommend **5 outfit styles** based on:
+     - Gender
+     - Body Shape
+     - Skin Tone
+   - For each outfit, specify:
+     - Clothing type (e.g., shirt, trousers, saree, dress)
+     - Fabrics and materials (e.g., cotton, silk, denim)
+     - Accessories (e.g., watches, earrings, ties)
+   - Suggest **best-suited colors** for each outfit, providing 4 variations:
+     - Example: Base Color (e.g., Navy Blue) + 3 Complementary/Contrasting options.
+
+4. **Image Generation Prompt:**
+   - Use the details above to generate an image of the outfit styled directly on the detected body shape, replacing mannequins.
+
+**Example Prompt for AI:**
+
+"Analyze the input image and detect the user's gender, body shape, and skin tone. Based on this information:
+
+1. Recommend 5 outfit styles for the event type: 'Formal'.
+2. For each style, specify clothing types, materials, and suitable accessories.
+3. Suggest 4 color variations for each outfit based on the user's skin tone (Hex Code: #F5CBA7).
+4. Provide image generation prompts to visualize each outfit styled directly on the detected athletic male body shape."
+
+**Event Details:**
+Event Type: College Style
+Gender: Male
+Body Shape: Athletic
+Skin Tone: Wheatish (#D4A373)
+
+**Output:**
+
+1. **Outfit 1:**
+   - Type: Casual Shirt with Chinos
+   - Material: Cotton (breathable, lightweight fabric suitable for daily wear)
+   - Accessories: White sneakers, Leather bracelet
+   - Colors: Base - Sky Blue; Variations - Light Gray, Pastel Pink, Olive Green, Deep Navy.
+   - Image Generation Prompts:
+     1. "Athletic male body shape wearing a sky-blue casual shirt and light gray chinos, styled with white sneakers and a leather bracelet, on a wheatish-skinned figure in a college-style backdrop. Full-body view."
+     2. "Athletic male body shape wearing a light gray casual shirt and pastel pink chinos, styled with white sneakers and a leather bracelet, on a wheatish-skinned figure in a college-style backdrop. Full-body view."
+     3. "Athletic male body shape wearing an olive green casual shirt and deep navy chinos, styled with white sneakers and a leather bracelet, on a wheatish-skinned figure in a college-style backdrop. Full-body view."
+     4. "Athletic male body shape wearing a pastel pink casual shirt and sky blue chinos, styled with white sneakers and a leather bracelet, on a wheatish-skinned figure in a college-style backdrop. Full-body view."
+
+2. **Outfit 2:**
+   - Type: Graphic T-shirt with Denim Jeans
+   - Material: Cotton (soft, durable fabric ideal for casual wear)
+   - Accessories: Canvas shoes, Backpack
+   - Colors: Base - Black; Variations - White, Olive, Burgundy, Charcoal Gray.
+   - Image Generation Prompts:
+     1. "Athletic male body shape wearing a black graphic T-shirt with dark denim jeans, styled with canvas shoes and a backpack, on a wheatish-skinned figure in a casual college campus setting. Full-body view."
+     2. "Athletic male body shape wearing a white graphic T-shirt with charcoal gray denim jeans, styled with canvas shoes and a backpack, on a wheatish-skinned figure in a casual college campus setting. Full-body view."
+     3. "Athletic male body shape wearing an olive graphic T-shirt with black denim jeans, styled with canvas shoes and a backpack, on a wheatish-skinned figure in a casual college campus setting. Full-body view."
+     4. "Athletic male body shape wearing a burgundy graphic T-shirt with olive denim jeans, styled with canvas shoes and a backpack, on a wheatish-skinned figure in a casual college campus setting. Full-body view."
+
+3. **Outfit 3:**
+   - Type: Ethnic Kurta with Nehru Jacket
+   - Material: Linen blend (lightweight, textured fabric that drapes well)
+   - Accessories: Loafers, Pocket square
+   - Colors: Base - Ivory White; Variations - Maroon, Deep Green, Mustard Yellow, Beige.
+   - Image Generation Prompts:
+     1. "Athletic male body shape wearing an ivory white kurta with a maroon Nehru jacket and beige churidar, styled with loafers and a pocket square, on a wheatish-skinned figure in a festive setting. Full-body view."
+     2. "Athletic male body shape wearing a maroon kurta with a deep green Nehru jacket and ivory white churidar, styled with loafers and a pocket square, on a wheatish-skinned figure in a festive setting. Full-body view."
+     3. "Athletic male body shape wearing a deep green kurta with a mustard yellow Nehru jacket and beige churidar, styled with loafers and a pocket square, on a wheatish-skinned figure in a festive setting. Full-body view."
+     4. "Athletic male body shape wearing a mustard yellow kurta with a beige Nehru jacket and ivory white churidar, styled with loafers and a pocket square, on a wheatish-skinned figure in a festive setting. Full-body view."
+
+4. **Outfit 4:**
+   - Type: Polo T-shirt with Slim-fit Trousers
+   - Material: Cotton blend (stretchable and comfortable for daily wear)
+   - Accessories: Sneakers, Sports watch
+   - Colors: Base - Navy Blue; Variations - Light Beige, Charcoal, Olive Green, Wine Red.
+   - Image Generation Prompts:
+     1. "Athletic male body shape wearing a navy blue polo T-shirt and light beige slim-fit trousers, styled with sneakers and a sports watch, on a wheatish-skinned figure in a college backdrop. Full-body view."
+     2. "Athletic male body shape wearing a charcoal polo T-shirt and olive green slim-fit trousers, styled with sneakers and a sports watch, on a wheatish-skinned figure in a college backdrop. Full-body view."
+     3. "Athletic male body shape wearing a wine-red polo T-shirt and navy blue slim-fit trousers, styled with sneakers and a sports watch, on a wheatish-skinned figure in a college backdrop. Full-body view."
+     4. "Athletic male body shape wearing an olive green polo T-shirt and charcoal slim-fit trousers, styled with sneakers and a sports watch, on a wheatish-skinned figure in a college backdrop. Full-body view."
+
+5. **Outfit 5:**
+   - Type: Hoodie with Joggers
+   - Material: Fleece (warm and comfortable fabric for casual and sporty looks)
+   - Accessories: Running shoes, Cap
+   - Colors: Base - Ash Gray; Variations - Navy Blue, Black, Olive Green, Mustard Yellow.
+   - Image Generation Prompts:
+     1. "Athletic male body shape wearing an ash gray hoodie with black joggers, styled with running shoes and a cap, on a wheatish-skinned figure in a sporty college setting. Full-body view."
+     2. "Athletic male body shape wearing a navy blue hoodie with olive green joggers, styled with running shoes and a cap, on a wheatish-skinned figure in a sporty college setting. Full-body view."
+     3. "Athletic male body shape wearing a black hoodie with mustard yellow joggers, styled with running shoes and a cap, on a wheatish-skinned figure in a sporty college setting. Full-body view."
+     4. "Athletic male body shape wearing an olive green hoodie with ash gray joggers, styled with running shoes and a cap, on a wheatish-skinned figure
