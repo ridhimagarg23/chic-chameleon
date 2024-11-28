@@ -5,7 +5,7 @@ import glob
 import os
 
 # Dynamically find the image in the static folder (handles .jpg, .jpeg, .png, etc.)
-image_path = glob.glob('../frontend/assets/image.*')  # Matches any extension like .jpg, .png, .jpeg, etc.
+image_path = glob.glob('./assets/image.*')  # Matches any extension like .jpg, .png, .jpeg, etc.
 
 if not image_path:
     raise FileNotFoundError("No image found in the static folder.")

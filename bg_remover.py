@@ -39,7 +39,7 @@ def remove_background(input_image_path, output_image_path):
 
 def find_image_in_frontend(extensions=['.png', '.jpg', 'image.jpeg']):
     # Define the folder path where images are stored
-    folder_path = '../frontend/assets'
+    folder_path = './assets'
     
     # Loop through all files in the directory
     for file_name in os.listdir(folder_path):

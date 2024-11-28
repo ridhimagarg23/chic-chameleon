@@ -14,7 +14,7 @@ from backend.bodyshape_detector import manual_body_shape_classification, body_ty
 app = Flask(__name__)
 
 # Configure upload folder and allowed extensions
-UPLOAD_FOLDER = '../frontend/assets'
+UPLOAD_FOLDER = './assets'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 

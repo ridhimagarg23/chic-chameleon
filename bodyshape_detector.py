@@ -356,15 +356,16 @@ def process_image(image_path, gender="Female"):
 
     # Show the processed image
     # cv2.imshow("Body Outline", body_outline_image)
-    # cv2.waitKey(0)
+    # cv2.waitKey(0)33
+    
     # cv2.destroyAllWindows()
 
-    return body_type, body_outline_image
+    return body_type
 
 # Example usage
 image_path = './static/image.png'  # Update with actual image path
 gender = "female"
-body_type, body_outline_image = process_image(image_path, gender="Female")
+body_type = process_image(image_path, gender="Female")
 print(f"Detected Body Type: {body_type}")
 
 # Option to enter manual measurements
