@@ -15,8 +15,8 @@ tokens = [
         "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",
         "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",
         "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",
-        "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",
-        "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",
+        "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",
+        "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",
         "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",
         "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"
     ]
@@ -69,7 +69,7 @@ def generate_color_outfits(outfit: str,colors: str, skin_tone: str, event_type: 
         - Accessories
         - Makeup
         - Hair
-        - Image generation prompt for this color: "A full-body view of a {outfit} in {colors}, suitable for {event_type}. The model should have Body shape - {body_shape} and skin color - {skin_tone}, and the outfit should include [accessories]. The model should be {gender}, and the image should feature only one model in a single pose, with no other poses or images in the frame.."
+        - Image generation prompt for this color: "A full-body view of a {outfit} in {colors}, suitable for {event_type}. The model should have Body shape - {body_shape} and skin color - {skin_tone}, The model should be {gender}."
         Provide a clean, list with no extra text.
     """
     response = client.chat.completions.create(
@@ -166,7 +166,7 @@ def generate_all_colors(event_type: str, body_shape: str, gender: str, skin_tone
 # Example Usage
 event_type = "indian wear for ethnic day in college"
 body_shape = body_type
-gender = gender
+gender = "male"
 
 skin_color = skin_color_code
 
