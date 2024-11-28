@@ -164,6 +164,29 @@ def generate_all_colors(event_type: str, body_shape: str, gender: str, skin_tone
 
 
 # Example Usage
+event_types = {
+    "Daily Wear": "Comfortable and practical outfits for everyday use.",
+    "Formal": "Office meetings, presentations, or business dinners.",
+    "Informal": "Outings, casual gatherings, or weekend trips.",
+    "College Wear": "Daily outfits for regular college days, emphasizing comfort and style.",
+    "College Style": "Trendy looks for college fests, cultural events, or stylish group activities.",
+    "Festive Wear": "Traditional or semi-formal outfits for celebrations like Diwali, Eid, or Christmas.",
+    "Party Look": "Glamorous attire for night-outs, weddings, or clubbing.",
+    "Special Occasions": "Birthdays, anniversaries, or personal milestone events.",
+    "Marriage": "Traditional, ethnic, or fusion styles for weddings and related ceremonies as a guest."
+}
+print("Please choose an event type:")
+for index, key in enumerate(event_types.keys(), 1):
+    print(f"{index}. {key}")
+
+choice = int(input("Enter the number corresponding to your choice: "))
+
+# Get the selected event type
+selected_key = list(event_types.keys())[choice - 1]
+selected_value = event_types[selected_key]
+
+# Store the key and value as a single string
+event_type = f"{selected_key}: {selected_value}"
 event_type = "indian wear for ethnic day in college"
 body_shape = body_type
 gender = "male"

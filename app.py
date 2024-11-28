@@ -82,13 +82,12 @@ def process_measurements():
         hips = float(request.form.get('hips'))
 
         # Run body shape analysis
-        from bodyshape_detector import body_type
-        body_shape = body_type
+        from bodyshape_detector import classify_body_type
+        body_shape = classify_body_type(gender,chest,waist,hips)
 
         # Run outfit generator
         from outfit_gen import generate_all_colors
         outfits = generate_all_colors(event_type, body_shape, gender, skin_color)
-
 
         # Render the outfits with results
         return render_template(

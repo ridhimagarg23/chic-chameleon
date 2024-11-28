@@ -326,17 +326,6 @@ def draw_body_outline(image):
     return body_outline_image
 
 # Function to get manual body measurements and classify body type
-def manual_body_shape_classification():
-    print("Enter your measurements for body type classification:")
-
-    # Get manual input for measurements
-    gender = "female"
-    if gender.lower() == 'female':
-        chest = float(input("Enter bust measurement (in inches): "))
-    else:
-        chest = float(input("Enter chest measurement (in inches): "))
-    waist = float(input("Enter waist measurement (in inches): "))
-    hips = float(input("Enter hip measurement (in inches): "))
 
     # Use manual inputs for classification
     body_type = classify_body_type(gender, chest, waist, hips)
@@ -357,19 +346,15 @@ def process_image(image_path, gender="Female"):
     # Show the processed image
     # cv2.imshow("Body Outline", body_outline_image)
     # cv2.waitKey(0)33
-    
+
     # cv2.destroyAllWindows()
 
     return body_type
 
 # Example usage
 image_path = './static/image.png'  # Update with actual image path
-gender = "female"
-body_type = process_image(image_path, gender="Female")
-print(f"Detected Body Type: {body_type}")
-
 # Option to enter manual measurements
-body_type = manual_body_shape_classification()
+
 
 
 
