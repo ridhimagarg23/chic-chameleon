@@ -84,21 +84,25 @@ def process_measurements():
         # Run body shape analysis
         from bodyshape_detector import classify_body_type
         body_shape = classify_body_type(gender,chest,waist,hips)
+    except Exception as e:
+            print(f"Error: {e}")
+            return "An error occurred during processing. Please try again.", 500
+
 
         # Run outfit generator
-        from outfit_gen import generate_all_colors
-        outfits = generate_all_colors(event_type, body_shape, gender, skin_color)
+    from outfit_gen import generate_all_colors
+    outfits = generate_all_colors(event_type, body_shape, gender, skin_color)
 
         # Render the outfits with results
-        return render_template(
+    return render_template(
             'index.html',
             outfits=outfits,
             show_results=True,
             event=event_type,
         )
-    except Exception as e:
-        print(f"Error: {e}")
-        return "An error occurred while processing measurements.", 500
+    # except Exception as e:
+    #     print(f"Error: {e}")
+    #     return "An error occurred while processing measurements.", 500
 
 
 if __name__ == '__main__':

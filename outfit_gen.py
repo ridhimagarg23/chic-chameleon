@@ -1,7 +1,7 @@
 from concurrent.futures.thread import ThreadPoolExecutor
 from typing import List
 from g4f.client import Client
-from bodyshape_detector import body_type
+# from bodyshape_detector import body_type
 from skin_color_detection import skin_color_code
 from gender_detection import gender
 from concurrent.futures import ThreadPoolExecutor
@@ -188,7 +188,7 @@ selected_value = event_types[selected_key]
 # Store the key and value as a single string
 event_type = f"{selected_key}: {selected_value}"
 event_type = "indian wear for ethnic day in college"
-body_shape = body_type
+body_shape = "pear"
 gender = "male"
 
 skin_color = skin_color_code

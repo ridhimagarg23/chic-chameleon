@@ -3,6 +3,7 @@
 # import numpy as np
 # import matplotlib.pyplot as plt
 # from tensorflow.keras import layers, models
+from gender_detection import gender
 
 # # Function to convert image to grayscale
 # def convert_to_grayscale(image_path):
@@ -353,6 +354,9 @@ def process_image(image_path, gender="Female"):
 
 # Example usage
 image_path = './static/image.png'  # Update with actual image path
+chest = 
+
+body_type = classify_body_type(gender, chest, waist, hips)
 # Option to enter manual measurements
 
 
