@@ -1,89 +1,87 @@
-from flask import Flask, request, jsonify
-from werkzeug.utils import secure_filename
 import os
-from backend.skin_color_detection2 import get_skin_color
-from bg_remover import remove_background
-from gender_detection import gender_detector
-from bodyshape_detector import predict_body_shape
+from flask import Flask, render_template, request, redirect, url_for
+from werkzeug.utils import secure_filename
+
+from backend.bodyshape_detector import manual_body_shape_classification, body_type
+# from bg_remover import remove_background
+# from gender_detection import gender_detector
+# from skin_color_detection import get_skin_color
+# from outfit_gen import generate_all_colors
+# from bodyshape_detector import classify_body_type
+# import gender_detection
+# import skin_color_detection
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = './assets'
 
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
+# Configure upload folder and allowed extensions
+UPLOAD_FOLDER = '../frontend/assets'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Function to check allowed file extensions
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Route to serve the initial HTML page
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Route to handle the image upload and display the measurements form
+@app.route('/submit', methods=['POST'])
+def submit_image():
+    if 'image' not in request.files:
+        return redirect(request.url)
+
+    image = request.files['image']
+    event = request.form.get('event')
+
+    if image and allowed_file(image.filename):
+        filename = secure_filename(image.filename)
+        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(image_path)
+
+        # Process image with bgremover
+        # remove_background(image_path)
+        #
+        # # Detect gender automatically from the image
+        # gender = gender_detector(image_path)
+        #
+        # # Detect skin color from the image
+        # skin_color = get_skin_color(image_path)
+
+        # Render the page with the image, event type, gender, skin color, and show the measurements form
+        return render_template('../frontend/index.html',
+                               image_name=filename,
+                               gender=gender,
+                               skin_color=skin_color,
+                               event=event,
+                               show_measurements=True)
 
 
-@app.route('/analyze', methods=['POST'])
-def analyze():
-    if 'photo' not in request.files:
-        return jsonify({"error": "No photo provided"}), 400
+# Route to process the measurements and generate outfit suggestions
+@app.route('/process', methods=['POST'])
+def process_measurements():
+    # Get form data
+    gender = request.form.get('gender')
+    skin_color = request.form.get('skin_color')
+    event_type = request.form.get('event')
+    chest = float(request.form.get('chest'))
+    waist = float(request.form.get('waist'))
+    hips = float(request.form.get('hips'))
 
-    file = request.files['photo']
-    if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
+    # Run body shape analysis
+    body_type = classify_body_type(gender, chest, waist, hips)
 
-    # Rename all uploaded files to "image" with their original extension
-    extension = file.filename.rsplit('.', 1)[-1].lower()
-    filename = f"image.{extension}"
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    # Run outfit generator
+    outfits = generate_all_colors(event_type, body_type, gender, skin_color)
 
-    # Save the file (overwrite if exists)
-    file.save(file_path)
-
-    image = file_path
-
-    # AI analysis
-    image = remove_background(image)
-    skin_tone = get_skin_color(image)
-    gender = gender_detector(image)
-    body_shape = predict_body_shape(image, gender, waist, hip, bust)
-    return jsonify({"gender": gender})
-
-
-@app.route('/final_analyze', methods=['GET'])
-def final_analyze():
-    # Mock final analysis results
-    results = {
-        "photo_url": "./backend/static/image.png",
-        "gender": "female",
-        "skin_tone": "Fair",
-        "skin_color": "#f8d9c0",
-        "body_shape": "Hourglass"
-    }
-    return jsonify(results)
+    # Render the outfits with the results
+    return render_template('index.html',
+                           outfits=outfits,
+                           show_results=True,
+                           event=event_type)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# from g4f.client import Client
-
-# client = Client()
-# response = client.chat.completions.create(
-#     model="gpt-4",  # ya koi available model
-#     messages=[{"role": "user", "content": """
-#     Based on the following user details:
-#     - Gender: female
-#     - Body Type: pear
-#     - Skin Tone: fair
-#      Skin Color -  #d5ab81
-#      Event Type - Formal
-
-
-#     Please provide:
-#     1. A list or dictionary of **colors that suit** the user's skin tone along with their corresponding color codes (e.g., '#FF5733').
-#     2. A list or dictionary of **dress types** that are recommended based on the EVENT TYPE AND  user's body type ANSWER BASED ON EVENT TYPE ONLY.
-#     3. A list of **at least 10 do's** related to the body type and skin tone.
-#     4. A list of **at least 10 don'ts** related to the body type and skin tone.
-
-#     Respond in a structured format as JSON:
-#     {{
-#         "colors_suited": [{{"color": "color_name", "code": "color_code"}}],
-#         "dress_recommendations": ["dress_type1", "dress_type2", ...],
-#         "dos": ["do1", "do2", ...],
-#         "donts": ["dont1", "dont2", ...]
-#     }}
-#     """}]
-# )
-
-# print(response.choices[0].message.content)

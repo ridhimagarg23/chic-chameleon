@@ -1,10 +1,20 @@
 import cv2
 import numpy as np
 from collections import Counter
+import glob
+import os
+
+# Dynamically find the image in the static folder (handles .jpg, .jpeg, .png, etc.)
+image_path = glob.glob('../frontend/assets/image.*')  # Matches any extension like .jpg, .png, .jpeg, etc.
+
+if not image_path:
+    raise FileNotFoundError("No image found in the static folder.")
 
 # Load the image
-image = cv2.imread('./static/image.png')
+image = cv2.imread(image_path[0])  # Get the first match
 
+if image is None:
+    raise ValueError("Failed to load the image. Please check the file format or path.")
 # Load the pre-trained Haar Cascade Classifier for face detection
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
@@ -54,10 +64,10 @@ def get_skin_color(image):
             cv2.putText(image, f"Skin Color: {skin_color_code}", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
 
             # Show the color block
-            cv2.imshow("Detected Skin Color", color_block)
-            cv2.imshow("Detected Face and Skin Color", image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            # cv2.imshow("Detected Skin Color", color_block)
+            # cv2.imshow("Detected Face and Skin Color", image)
+            # cv2.waitKey(0)
+            # cv2.destroyAllWindows()
 
             return skin_color_code
         else:

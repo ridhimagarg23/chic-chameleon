@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style and Outfit Generator</title>
+</head>
+<body>
+    <h1>Upload Your Image</h1>
+
+    <!-- Step 1: Image Upload Form -->
+    {% if not show_measurements %}
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+        <label for="image">Choose an image:</label>
+        <input type="file" name="image" required><br><br>
+
+        <!-- Event type selection -->
+        <label for="event">Choose an event type:</label>
+        <select name="event" id="event" required>
+            <option value="party">Party</option>
+            <option value="wedding">Wedding</option>
+            <option value="casual">Casual</option>
+            <option value="office">Office</option>
+            <option value="evening">Evening Wear</option>
+            <option value="formal">Formal</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+
+    <!-- Step 2: Measurements Form (Only shows after image is uploaded) -->
+    {% if show_measurements %}
+    <h2>Measurements for Outfit Recommendation</h2>
+    <form action="/process" method="POST">
+        <input type="hidden" name="image" value="{{ image_name }}">
+        <input type="hidden" name="gender" value="{{ gender }}">
+        <input type="hidden" name="skin_color" value="{{ skin_color }}">
+        <input type="hidden" name="event" value="{{ event }}">
+
+        <label for="chest">Chest/Bust measurement (in inches):</label>
+        <input type="number" name="chest" required><br><br>
+
+        <label for="waist">Waist measurement (in inches):</label>
+        <input type="number" name="waist" required><br><br>
+
+        <label for="hips">Hips measurement (in inches):</label>
+        <input type="number" name="hips" required><br><br>
+
+        <button type="submit">Generate Outfits</button>
+    </form>
+    {% endif %}
+
+    <!-- Step 3: Show Results (After processing measurements) -->
+    {% if show_results %}
+    <h2>Recommended Outfits</h2>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+        </tr>
+        {% for outfit in outfits %}
+        <tr>
+            <td>{{ outfit.title }}</td>
+            <td>{{ outfit.description }}</td>
+            <td><img src="{{ outfit.image_url }}" alt="{{ outfit.title }}" width="100"></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>

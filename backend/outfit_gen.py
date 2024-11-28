@@ -1,6 +1,9 @@
 from concurrent.futures.thread import ThreadPoolExecutor
 from typing import List
 from g4f.client import Client
+from bodyshape_detector import body_type
+from skin_color_detection import skin_color_code
+from gender_detection import gender
 from concurrent.futures import ThreadPoolExecutor
 from huggingface_hub import InferenceClient
 
@@ -8,9 +11,10 @@ from sympy.physics.units import temperature
 
 
 tokens = [
-        "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",  # First token
-        "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",
-        "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",
+        "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",  # First token
+        "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",
+        "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",
+        "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",
         "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",
         "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",
         "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",
@@ -65,7 +69,7 @@ def generate_color_outfits(outfit: str,colors: str, skin_tone: str, event_type: 
         - Accessories
         - Makeup
         - Hair
-        - Image generation prompt for this color: "A full body view of a [description of outfit] in [Color X], suitable for {event_type}. The model should have Body shape - {body_shape}  and skin color - {skin_tone}, and the outfit should include [accessories]. The model should be {gender}."
+        - Image generation prompt for this color: "A full-body view of a {outfit} in {colors}, suitable for {event_type}. The model should have Body shape - {body_shape} and skin color - {skin_tone}, and the outfit should include [accessories]. The model should be {gender}, and the image should feature only one model in a single pose, with no other poses or images in the frame.."
         Provide a clean, list with no extra text.
     """
     response = client.chat.completions.create(
@@ -92,7 +96,7 @@ def generate_all_colors(event_type: str, body_shape: str, gender: str, skin_tone
 
     current_token_index = 0  # Start with the first token
     request_count = 0  # Keep track of requests made with the current token
-    max_requests_per_token = 3  # Limit of 3 requests per token
+    max_requests_per_token = 2  # Limit of 3 requests per token
 
     colors_listss = []
     print("Generated Outfits:")
@@ -161,8 +165,9 @@ def generate_all_colors(event_type: str, body_shape: str, gender: str, skin_tone
 
 # Example Usage
 event_type = "indian wear for ethnic day in college"
-body_shape = "Pear"
-gender = "female"
-skin_color = "#e0ac69"
+body_shape = body_type
+gender = gender
+
+skin_color = skin_color_code
 
 extracted_outfits= generate_all_colors(event_type, body_shape, gender, skin_color)

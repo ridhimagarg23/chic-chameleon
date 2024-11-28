@@ -116,12 +116,12 @@ def gender_detector(img_path):
         # Draw rectangle around the face and display the predicted gender
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
         cv2.putText(img, f"{gender} ({confidence:.2f})", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 2)
-
+    return gender
     # Display the image with gender detection results
-    cv2.imshow('Gender Detection', img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # cv2.imshow('Gender Detection', img)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
 # Run the gender detection function
 # Replace 'image.png' with the path to your input image
-gender_detector('./backend/static/image.png')
+gender = gender_detector('../backend/static/image.png')

@@ -4,7 +4,7 @@ from transformers import pipeline
 generator = pipeline('text-generation', model='gpt-3.5-turbo')  # or the correct model name you are using
 
 def generate_outfits(event_type, skin_tone, body_shape, gender):
-    # Define the prompt template
+    # Define the prompt templates
     prompt = f"""
     You are a fashion stylist. I want you to recommend five different outfits based on the following event and the user's skin tone, body shape, and gender. For each outfit, provide four color variations that suit the user's skin tone.
 

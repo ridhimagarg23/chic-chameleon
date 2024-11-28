@@ -1,59 +1,132 @@
+/* General reset for padding and margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic layout styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #C2EFD4;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1440px;
     margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 0 50px;
 }
 
-h1, h2 {
-    text-align: center;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 3px solid #224F34;
 }
 
-#imagePreview {
-    text-align: center;
+.logo {
+    font-size: 36px;
+    font-family: 'Rufina', serif;
+    font-weight: 700;
+    color: #224F34;
 }
 
-#uploadedImage {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
+.nav {
+    display: flex;
+    gap: 40px;
 }
 
-.details-box {
-    margin-top: 20px;
-    background-color: #eee;
+.nav-item {
+    font-size: 25px;
+    font-family: 'Rufina', serif;
+    font-weight: 700;
+    color: #224F34;
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    color: #267D49;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
     padding: 10px;
-    border-radius: 5px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    margin-right: 20px;
 }
 
-.body-shape-form {
+.start-btn {
+    background-color: #224F34;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.start-btn:hover {
+    background-color: #267D49;
+}
+
+.main-content {
+    width: 649px;
+    text-align: left;
+    position: absolute;
+    color: #224F34;
+    font-size: 86px;
+    font-family: Rufina;
+    font-weight: 700;
+    word-wrap: break-word;
+    margin-top: 100px;
+}
+
+.headline {
+    font-size: 86px;
+    color: #224F34;
+    font-family: 'Rufina', serif;
+    font-weight: 700;
+}
+
+.sub-headline {
+    font-size: 24px;
+    color: #267D49;
+    line-height: 52px;
     margin-top: 30px;
 }
 
-#outfitTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.explore-btn {
+    background-color: #224F34;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 20px 60px;
+    margin-top: 50px;
+    border-radius: 3px;
+    box-shadow: 6px 33px 59px rgba(0, 0, 0, 0.30);
+    cursor: pointer;
 }
 
-#outfitTable th, #outfitTable td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
+.explore-btn:hover {
+    background-color: #267D49;
 }
 
-#outfitTable th {
-    background-color: #f2f2f2;
-}
-
-#outfitTable td img {
-    width: 50px;
-    height: auto;
+.fashion-sidebar {
+    width: 570px;
+    height: 717px;
+    background-color: #6BC785;
+    box-shadow: inset 6px 6px 41px rgba(0, 0, 0, 0.08);
+    border-radius: 141px 45px 150px 82px;
+    position: absolute;
+    right: 50px;
+    top: 150px;
 }

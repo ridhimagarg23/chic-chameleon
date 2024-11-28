@@ -7,10 +7,7 @@ extracted_outfits = [["A man in a black suit standing on a stage."]]
 
 def outfits_image_generator(extracted_outfits):
     tokens = [
-        "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",  # First token
-        "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",
-        "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",
-        "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",
+
         "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",
         "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",
         "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",
