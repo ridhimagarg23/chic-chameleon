@@ -2,15 +2,20 @@ from huggingface_hub import InferenceClient
 import random
 
 # Define extracted_outfits as input (example data)
-extracted_outfits = [["A man in a black suit standing on a stage."]]
+extracted_outfits = [["*Image Generation Prompt**: A full-body view of a Lightweight button-up shirt layered over a fitted crew neck t-shirt with chinos and loafers in olive green, suitable for College Wear: Daily outfits for regular college days, emphasizing comfort and style. The model should have Body shape - pear and skin color - #b4744e. The model should be male"]]
 
 
 def outfits_image_generator(extracted_outfits):
     tokens = [
 
-        "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",
+        "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",  # First token
+        "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",
+        "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",
+        "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",
+        "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",
+        "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",
         "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",
-        "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",
+        "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"
 
     ]
 
@@ -26,7 +31,8 @@ def outfits_image_generator(extracted_outfits):
             # Generate image
             if isinstance(extracted_outfits, list) and extracted_outfits:
                 prompt = extracted_outfits[0][-1]
-                client.text_to_image(prompt)
+                image = client.text_to_image(prompt)
+                image.show() 
 
                 # Mark token as valid if no exception occurs
                 results[token] = "Valid"
