@@ -22,6 +22,7 @@ client = Client()
 
 # Function to generate 5 different outfits
 def generate_outfits(event_type: str, event: str, body_shape: str, gender: str) -> List[str]:
+    print(event_type)
     """
     Generate 5 outfit styles based on event type, body shape, and gender.
     
@@ -81,6 +82,8 @@ def generate_color_options(outfit: str, skin_tone: str, event_type: str) -> List
 
 # Function to generate detailed color-specific outfit options
 def generate_color_outfits(outfit: str, colors: str, skin_tone: str, event_type: str, event: str, body_shape: str, gender: str) -> List[str]:
+    print(event_type)
+    print(event)
     """
     Provide detailed suggestions for an outfit in specific colors, including accessories, makeup, and hair.
 
@@ -104,7 +107,7 @@ def generate_color_outfits(outfit: str, colors: str, skin_tone: str, event_type:
         - Accessories
         - Makeup
         - Hair
-        - Image generation prompt: "A full-body view of a {outfit} in {colors}, suitable for {event}. The human model  have Body shape - {body_shape}, skin color - {skin_tone}, and be {gender}."
+        - Image generation prompt: "A studio-style full-body view of a {gender} wearing a {outfit} in {colors} color, suitable for {event}. The model has {body_shape} body shape, {skin_tone} skin color, and is captured in professional lighting with a neutral background.."
         Provide a clean list with no extra text.
     """
     response = client.chat.completions.create(
@@ -184,10 +187,10 @@ if __name__ == "__main__":
     for event in event_types:
         print(f"- {event}")
     event_choice = int(input("Enter the number corresponding to your choice: "))
-    event_type = f"{event_type[event_choice-1]}"
+    event_type = f"{event_types[event_choice-1]}"
     body_shape = "Hourglass"
     gender = "Female"
-    skin_tone = "Medium"
+    skin_tone = skin_color_code
 
     all_outfits = generate_all_colors(event_type, body_shape, gender, skin_tone)
     print("Generated Outfits with Details:", all_outfits)
