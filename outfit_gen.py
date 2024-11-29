@@ -301,7 +301,7 @@ def generate_color_outfits(outfit: str, colors: str, skin_tone: str, event_type:
         - Accessories
         - Makeup
         - Hair
-        - Image generation prompt: "A full-body view of a {outfit} in {colors}, suitable for {event}. The human model should have Body shape - {body_shape}, skin color - {skin_tone}, and be {gender}."
+        - Image generation prompt: "A full-body view of a {outfit} in {colors}, suitable for {event}. The human model  have Body shape - {body_shape}, skin color - {skin_tone}, and be {gender}."
         Provide a clean list with no extra text.
     """
     response = client.chat.completions.create(
